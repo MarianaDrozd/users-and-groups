@@ -1,7 +1,10 @@
-from django.urls import path
+from rest_framework import routers
+from .views import CustomUserViewSet, CustomGroupViewSet
 
-from .views import TestAPIView
+router = routers.SimpleRouter()
+router.register('users', CustomUserViewSet, basename='users')
+router.register('groups', CustomGroupViewSet, basename='groups')
 
-urlpatterns = [
-    path('test-api/', TestAPIView.as_view(), name='test')
-]
+
+urlpatterns = []
+urlpatterns += router.urls

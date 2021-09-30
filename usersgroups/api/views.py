@@ -1,8 +1,25 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from rest_framework import viewsets
+
+from usersgroups.api.serializers import CustomGroupSerializer, CustomUserSerializer, CustomGroupDetailSerializer
+from usersgroups.models import CustomGroup, CustomUser
 
 
-class TestAPIView(APIView):
-    def get(self, request, *args, **kwargs):
-        data = [{'id': 1, 'name': 'John'}, {'id': 2, 'name': 'Jane'}]
-        return Response(data)
+class CustomGroupViewSet(viewsets.ModelViewSet):
+    queryset = CustomGroup.objects.all()
+    serializer_class = CustomGroupSerializer
+
+    action_to_serializer = {
+        "retrieve": CustomGroupDetailSerializer
+    }
+
+    def get_serializer_class(self):
+        return self.action_to_serializer.get(
+            self.action,
+            self.serializer_class
+        )
+
+
+class CustomUserViewSet(viewsets.ModelViewSet):
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
+
