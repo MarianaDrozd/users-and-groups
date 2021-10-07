@@ -57,7 +57,7 @@ ROOT_URLCONF = 'users_and_groups.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'usersgroups-ui/build']
+        'DIRS': [BASE_DIR / 'usersgroups_ui/build']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -124,7 +124,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = (
-    (BASE_DIR / 'usersgroups-ui/build/static'),
+    (BASE_DIR / 'usersgroups_ui/build/static'),
 )
 
 # Default primary key field type
